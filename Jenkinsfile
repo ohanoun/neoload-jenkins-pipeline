@@ -5,7 +5,7 @@ pipeline {
     disableResume()
   }
   stages {
-    stage('Start NeoLoad infrastructure') {
+    stage('Start NeoLoad Infrastructure') {
       agent { label 'master' }
       steps {
         sh 'docker network create neoload'
@@ -33,8 +33,8 @@ pipeline {
     }
   }
   post {
-    always{
-      node('master'){
+    always {
+      node('master') {
         unstash 'infra'
         unstash 'Jenkinsfile'
         sh 'docker-compose -f neoload/load-generators/docker-compose.yml down'
@@ -50,7 +50,7 @@ pipeline {
         sh 'docker volume prune -f'
         sh 'docker image prune -f'
         cleanWs()
-    }
+      }
     }
   }
 }
