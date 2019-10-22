@@ -27,7 +27,7 @@ pipeline {
         unstash 'LG'
         withCredentials([string(credentialsId: 'neoloadToken', variable: 'neoloadToken')]) {
           sh label: 'API Load Test',
-          script: "NeoLoad -project '$WORKSPACE/default.yaml' -testResultName 'Petstore API (build ${BUILD_NUMBER})' -description 'Testing Load as Code' -launch 'Petstore API' -loadGenerators '$WORKSPACE/neoload/load-generators/lg.yaml' -nlweb -nlwebAPIURL http://linux-vm:81 -nlwebToken ${neoloadToken} -leaseServer nlweb -leaseLicense 10:1"
+          script: "NeoLoad -project '$WORKSPACE/default.yaml' -testResultName 'Petstore API (build ${BUILD_NUMBER})' -description 'Testing Load as Code' -launch 'Petstore API' -loadGenerators '$WORKSPACE/neoload/load-generators/lg.yaml' -nlweb -nlwebAPIURL http://172.17.0.3:81 -nlwebToken ${neoloadToken} -leaseServer nlweb -leaseLicense 10:1"
         }
       }
     }
