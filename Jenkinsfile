@@ -8,7 +8,7 @@ pipeline {
     stage('Start NeoLoad Infrastructure') {
       agent { label 'master' }
       steps {
-        sh 'docker network create neoload'
+      //  sh 'docker network create neoload'
         sh 'docker-compose -f neoload/load-generators/docker-compose.yml up -d'
         stash includes: 'neoload/load-generators/lg.yaml', name: 'LG'
         stash includes: 'neoload/load-generators/docker-compose.yml', name: 'infra'
@@ -38,7 +38,7 @@ pipeline {
         unstash 'infra'
         unstash 'Jenkinsfile'
         sh 'docker-compose -f neoload/load-generators/docker-compose.yml down'
-        sh 'docker network rm neoload'
+    //    sh 'docker network rm neoload'
         script {
           NEOLOAD_PROJECT_FILES = sh (
             script: "ls -F | grep -vE  'neoload|Jenkinsfile|*.bak' | tr '\n' ',' ; echo",
