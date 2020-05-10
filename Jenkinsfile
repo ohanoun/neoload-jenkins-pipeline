@@ -8,7 +8,7 @@ pipeline {
     stage('Start NeoLoad Infrastructure') {
       agent { label 'master' }
       steps {
-        //sh 'docker network create neoload'
+        sh 'docker network create neoload'
         sh 'docker-compose -f neoload/load-generators/docker-compose.yml up -d'
         stash includes: 'neoload/load-generators/lg.yaml', name: 'LG'
         stash includes: 'neoload/load-generators/docker-compose.yml', name: 'infra'
