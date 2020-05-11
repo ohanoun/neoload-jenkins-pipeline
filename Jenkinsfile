@@ -26,7 +26,6 @@ pipeline {
         git(branch: "master", url: 'https://github.com/ohanoun/neoload-as-code-demo.git')
         unstash 'LG'
         sh script: "NeoLoadCmd -project '$WORKSPACE/default.yaml' -testResultName 'Petstore API (build ${BUILD_NUMBER})' -description 'Testing Load as Code' -launch 'Petstore API' -loadGenerators '$WORKSPACE/neoload/load-generators/lg.yaml' -nlweb -nlwebAPIURL http://dockerps4.neotys.com:8080 -nlwebToken 0khM5QANVu0rn0BNwRQInGtJ -leaseServer nlweb -leaseLicense 10:1"
-        }
       }
     }
   }
