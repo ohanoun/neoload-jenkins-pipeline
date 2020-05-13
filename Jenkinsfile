@@ -1,7 +1,7 @@
 pipeline {
   agent none
   environment {
-    NLW_TOKEN = credentials('NLWEBTOKEN')
+    NLW_TOKEN = credentials('NLWEB_TOKEN_DPS4')
   }
   options {
     disableConcurrentBuilds()
