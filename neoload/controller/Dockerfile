@@ -1,4 +1,4 @@
-FROM neotys/neoload-controller:7.3
+FROM neotys/neoload-controller:7.6
 
 ARG user=neoload
 ENV HOME /home/${user}
